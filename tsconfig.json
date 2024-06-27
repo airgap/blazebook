@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"lib": ["ESNext"],
+		"declaration": true,
+		"sourceMap": true,
+		"module": "esnext",
+		"target": "esnext",
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"strict": true,
+		"downlevelIteration": true,
+		"skipLibCheck": true,
+		"jsx": "preserve",
+		"allowSyntheticDefaultImports": false,
+		"forceConsistentCasingInFileNames": true,
+		"allowJs": false
+	},
+	"include": ["src/**/*"]
+}
