@@ -37,7 +37,7 @@ export const blaze = <
 	const langList = Object.entries(phrasebooks).map(([l, b]) =>
 		compactPhrasebook(l as Lang, b),
 	);
-	const compactedPhrasebooks = Object.fromEntries(langList);
+	const compactedPhrasebooks = Object.fromEntries(langList) as Record<Lang, CompactedPhrasebook>;
 
 	const genericPhrasebooks: Record<string, CompactedPhrasebook> = {};
 
