@@ -1,8 +1,9 @@
 import { PhrasebookMap, SinglePhrasebook } from './PhrasebookMap';
+import { LanguageCode } from './LanguageCode';
 
 export const blaze = <
 	Phrasebooks extends PhrasebookMap,
-	Lang extends Extract<keyof Phrasebooks, string>,
+	Lang extends Extract<keyof Phrasebooks, LanguageCode>,
 	D extends Lang,
 >(
 	phrasebooks: Phrasebooks,
@@ -10,6 +11,7 @@ export const blaze = <
 ) => {
 	type Phrasebook = Phrasebooks[Lang];
 	const defaultBook = phrasebooks[d];
+	if (!defaultBook) throw new Error('No default book selected');
 	type DefaultBook = typeof defaultBook;
 	type CompactedPhrasebook = Phrasebook & DefaultBook;
 	const defaultPhrases = Object.entries(defaultBook) as [
@@ -21,14 +23,6 @@ export const blaze = <
 		book: SinglePhrasebook,
 	): [Lang, CompactedPhrasebook] => {
 		if (lang === 'en-US') return [lang, defaultBook];
-		if (`${lang}-fallback` in phrasebooks) {
-			const fallbacks = Object.entries(
-				phrasebooks[`${lang}-fallback` as keyof Phrasebooks],
-			);
-			fallbacks.forEach(([name, phrase]) => {
-				if (!(name in book)) Object.assign(book, { [name]: phrase });
-			});
-		}
 		defaultPhrases.forEach(([name, phrase]) => {
 			if (!(name in book)) Object.assign(book, { [name]: phrase });
 		});
