@@ -3,7 +3,7 @@ import { LanguageCode } from './LanguageCode';
 
 export const blaze = <
 	Phrasebooks extends PhrasebookMap,
-	Lang extends Extract<keyof Phrasebooks, LanguageCode>,
+	Lang extends Extract<keyof Phrasebooks, LanguageCode | string>,
 	D extends Lang,
 >(
 	phrasebooks: Phrasebooks,
