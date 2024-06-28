@@ -29,7 +29,7 @@ export const blaze = <
 		return [lang, book as CompactedPhrasebook];
 	};
 	const langList = Object.entries(phrasebooks).map(([l, b]) =>
-		compactPhrasebook(l as Lang, b),
+		compactPhrasebook(l as Lang, b as Phrasebook),
 	);
 	const compactedPhrasebooks = Object.fromEntries(langList) as Record<
 		Lang,
