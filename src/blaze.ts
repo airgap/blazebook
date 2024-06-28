@@ -1,4 +1,4 @@
-import { PhrasebookMap, SinglePhrasebook } from './PhrasebookMap';
+import { PhrasebookMap, Phrasebook } from './Phrasebook';
 import { LanguageCode } from './LanguageCode';
 
 export const blaze = <
@@ -9,18 +9,18 @@ export const blaze = <
 	phrasebooks: Phrasebooks,
 	d: D,
 ) => {
-	type Phrasebook = Phrasebooks[Lang];
+	type ProvidedPhrasebook = Phrasebooks[Lang];
 	const defaultBook = phrasebooks[d];
 	if (!defaultBook) throw new Error('No default book selected');
 	type DefaultBook = typeof defaultBook;
-	type CompactedPhrasebook = Phrasebook & DefaultBook;
+	type CompactedPhrasebook = ProvidedPhrasebook & DefaultBook;
 	const defaultPhrases = Object.entries(defaultBook) as [
 		keyof DefaultBook,
 		DefaultBook[keyof DefaultBook],
 	][];
 	const compactPhrasebook = (
 		lang: Lang,
-		book: SinglePhrasebook,
+		book: Phrasebook,
 	): [Lang, CompactedPhrasebook] => {
 		if (lang === 'en-US') return [lang, defaultBook];
 		defaultPhrases.forEach(([name, phrase]) => {
