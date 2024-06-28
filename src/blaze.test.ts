@@ -1,11 +1,4 @@
-# Blazebook
-
-## Easy localization
-
-## Examples
-
-```ts
-import { blaze } from 'blazebook';
+import { blaze } from './blaze';
 import { PhrasebookMap, SinglePhrasebook } from './PhrasebookMap';
 
 const enUS = {
@@ -61,4 +54,3 @@ const sources = {
 const book = blaze(sources, 'en-US');
 const changeColorInBritishEnglish = book.getPhrasebook('en-GB').changeColor;
 const changeColorInAnyEnglish = book.getPhrasebook('en').changeColor;
-```

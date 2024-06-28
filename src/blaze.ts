@@ -37,7 +37,10 @@ export const blaze = <
 	const langList = Object.entries(phrasebooks).map(([l, b]) =>
 		compactPhrasebook(l as Lang, b),
 	);
-	const compactedPhrasebooks = Object.fromEntries(langList) as Record<Lang, CompactedPhrasebook>;
+	const compactedPhrasebooks = Object.fromEntries(langList) as Record<
+		Lang,
+		CompactedPhrasebook
+	>;
 
 	const genericPhrasebooks: Record<string, CompactedPhrasebook> = {};
 
@@ -50,7 +53,7 @@ export const blaze = <
 			if (!genericPhrasebooks[prefix]) genericPhrasebooks[prefix] = phrasebook;
 		}
 	}
-	const getPhrasebook = (lang: string): CompactedPhrasebook | undefined =>
+	const getPhrasebook = (lang: string): CompactedPhrasebook =>
 		lang in phrasebooks
 			? compactedPhrasebooks[lang as Lang]
 			: genericPhrasebooks[lang.substring(0, 2)] ?? defaultBook;
